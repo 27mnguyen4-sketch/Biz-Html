@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Boiling Point | Home</title>
+    <style>
+        :root {
+            --bp-red: #c64c38;
+            --bp-yellow: #ffcc00;
+            --neon-magenta: #ff00ff;
+            --dark-bg: #000;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial Black', Gadget, sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION BAR --- */
+        .nav-bar {
+            background-color: var(--bp-red);
+            padding: 15px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-left { display: flex; align-items: center; }
+        .logo-text { font-size: 20px; margin-right: 40px; color: white; text-decoration: none; }
+
+        .nav-tabs { display: flex; gap: 30px; }
+
+        /* Styling both links and buttons to look identical */
+        .tab-link {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'Arial Black';
+            padding: 5px 0;
+            transition: 0.3s;
+            border-bottom: 2px solid transparent;
+            display: inline-block;
+        }
+
+        .tab-link:hover, .tab-link.active { 
+            color: var(--bp-yellow); 
+            border-bottom: 2px solid var(--bp-yellow);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.9)), 
+                        url('609994335d769a2623726f24_mala thumbnail.jpg') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: height 0.5s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 10vw, 5rem);
+            text-transform: uppercase;
+            letter-spacing: 12px;
+            margin: 0;
+            text-shadow: 0 0 20px rgba(0,0,0,0.7);
+        }
+
+        /* --- CONTENT AREA --- */
+        .main-content {
+            max-width: 1200px;
+            margin: -50px auto 100px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .about-box {
+            text-align: center;
+            max-width: 800px;
+            margin: 40px auto;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #ddd;
+        }
+
+        footer { text-align: center; padding: 60px; opacity: 0.4; font-size: 0.7rem; border-top: 1px solid #222; }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-bar">
+        <div class="nav-left">
+            <a href="index.html" class="logo-text">LOGO</a>
+            <div class="nav-tabs">
+                <button class="tab-link active" onclick="openTab(event, 'home')">Home</button>
+                
+                <a href="menu.html" class="tab-link">Menu</a>
+                <a href="about.html" class="tab-link">About Us</a>
+                <a href="ad.html" class="tab-link">A & D</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="hero-header" class="hero">
+        <h1 id="hero-title">THE BOILING POINT</h1>
+        <p id="hero-sub" style="color: var(--bp-yellow); letter-spacing: 4px;">EXPERIENCE THE HEAT</p>
+    </header>
+
+    <main class="main-content">
+        <div id="home" class="tab-content active">
+            <div class="about-box">
+                <h2 style="color: var(--bp-red);">WELCOME</h2>
+                <p>Select a tab above to explore our signature hot pots, appetizers, and hand-crafted drinks.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>&copy; 2026 THE BOILING POINT</footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-link");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            const hero = document.getElementById('hero-header');
+            const title = document.getElementById('hero-title');
+            
+            if (tabName !== 'home') {
+                hero.style.height = '35vh';
+                title.style.fontSize = '2.5rem';
+            } else {
+                hero.style.height = '60vh';
+                title.style.fontSize = 'clamp(2rem, 10vw, 5rem)';
+            }
+        }
+    </script>
+</body>
+</html>
